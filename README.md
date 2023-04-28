@@ -1,12 +1,11 @@
 # fastapi-microservice-template
 
-This is an opinionated template for a [FastAPI](https://fastapi.tiangolo.com/) based [Serverless Framework](https://www.serverless.com/framework) microservice running on [AWS Lambda](https://aws.amazon.com/lambda/).
+This is an opinionated template for a [FastAPI](https://fastapi.tiangolo.com/).
 
 This template supports being run:
 
 -   Locally using [uvicorn](https://www.uvicorn.org/)
 -   Through Docker with uvicorn (optionally run through [Gunicorn](https://gunicorn.org/))
--   As a Serverless Framework application deployed to AWS Lambda
 
 ---
 
@@ -26,15 +25,6 @@ This template supports being run:
 
 -   [uvicorn](https://www.uvicorn.org/)
 -   [Gunicorn](https://docs.gunicorn.org/en/stable/)
--   [Serverless Framework](https://www.serverless.com/framework/docs)
-    -   [Serverless Python Requirements](https://github.com/serverless/serverless-python-requirements) (Dependency management)
-    -   [Docker](https://docs.docker.com/)
--   [AWS](https://docs.aws.amazon.com/) (Cloud provider)
-    -   [Lambda](https://docs.aws.amazon.com/lambda/) (Serverless host)
-    -   [IAM](https://docs.aws.amazon.com/iam/) (AWS permissions)
-    -   [CloudFormation](https://docs.aws.amazon.com/cloudformation/) (Syntax used in Serverless config)
-    -   [API Gateway](https://docs.aws.amazon.com/apigateway/)
-    -   [CLI](https://docs.aws.amazon.com/cli/)
 
 ### [pre-commit](#pre-commit)/[Formatting](#formatting)
 
@@ -47,10 +37,9 @@ This template supports being run:
 
 ### Other
 
--   [Python 3.9](https://docs.python.org/3.9/reference/)
-    -   [venv](https://docs.python.org/3.9/library/venv.html) (Virtual enviroment management)
--   [pip](https://pip.pypa.io/en/stable/) (Python package management)
--   [npm](https://docs.npmjs.com/) (Node package management)
+-   [Python 3.11](https://docs.python.org/3.11/reference/)
+    -   [venv](https://docs.python.org/3.11/library/venv.html) (Virtual enviroment management)
+    -   [pip](https://pip.pypa.io/en/stable/) (Python package management)
 
 ---
 
@@ -58,35 +47,12 @@ This template supports being run:
 
 You're going to need a couple of prerequisites:
 
--   [Python 3.9](https://www.python.org/downloads/)
--   [Node](https://nodejs.org/en/download/)
+-   [Python 3.11](https://www.python.org/downloads/)
 -   [Docker](https://docs.docker.com/get-docker/)
 
 To find the version of your Python installation run:
 
-```zsh
-~ python3 --version
-Python 3.9.13
-```
 *Note:* For Windows users always replace `python3` with `py` or `python`
-
-### Create the Project
-
-First, fork this repo:
-
--   Navigate to this repo on GitHub
--   In the top-right corner of the page, click "Fork"
-
-If you wish to rename your fork, do it now.
-
-Then, clone the fork to your local device:
-
--   Navigate to your fork
--   Above the list of files, click the green "Code" button
--   Either copy the link manually or click the 📋 next to it
--   Open your favorite terminal and `cd` into the directory you want your project located
--   Run `git clone [Link You Copied]`
--   `cd` into the newly created directory
 
 ### Virtual Enviroment
 
@@ -142,7 +108,6 @@ tests/
 ├── test_main.py
 └── routers/
     └── test_users.py
-serverless.yml
 requirements.txt
 dev-requirements.txt
 ```
@@ -238,35 +203,6 @@ Now you have an image which can again be run any way you wish. Just make sure yo
 ```zsh
 ~ docker run -p 80:80 --env-file .env.staging my-server-image
 ```
-
-### Deploying
-
-To deploy your application to Lambda, first install the latest `serverless` CLI. This can be done by running:
-
-```zsh
-~ npm install -g serverless
-```
-
-You will also need to install any other serverless dependencies with:
-
-```zsh
-~ npm install
-```
-
-Then, you need to get your AWS key and secret from the dashboard. A guide to do that can be found [here](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys). Configure them with the `serverless` CLI by running:
-
-```zsh
-~ serverless config credentials --provider aws --key [Insert Key Here] --secret [Insert Secret Here]
-```
----
-
-Now you're ready to deploy! With Docker running, run:
-
-```zsh
-~ sls deploy
-```
-
-The first time, this command can take up to 15 minutes to complete. Once it's done you can access your app at the link printed in the console.
 
 ## Formatting
 
