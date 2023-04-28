@@ -4,8 +4,8 @@ This is an opinionated template for a [FastAPI](https://fastapi.tiangolo.com/).
 
 This template supports being run:
 
--   Locally using [uvicorn](https://www.uvicorn.org/)
--   Through Docker with uvicorn (optionally run through [Gunicorn](https://gunicorn.org/))
+- Locally using [uvicorn](https://www.uvicorn.org/)
+- Through Docker with uvicorn (optionally run through [Gunicorn](https://gunicorn.org/))
 
 ---
 
@@ -15,31 +15,31 @@ This template supports being run:
 
 ### Libraries
 
--   [FastAPI](https://fastapi.tiangolo.com/) (Web framework)
-    -   [Starlette](https://www.starlette.io/) (ASGI toolkit FastAPI builds on)
--   [pydantic](https://pydantic-docs.helpmanual.io/) (Data validation)
--   [Mangum](https://mangum.io/) (ASGI adapter for Lambda)
--   [Loguru](https://loguru.readthedocs.io/en/stable/index.html) (Logging)
+- [FastAPI](https://fastapi.tiangolo.com/) (Web framework)
+  - [Starlette](https://www.starlette.io/) (ASGI toolkit FastAPI builds on)
+- [pydantic](https://pydantic-docs.helpmanual.io/) (Data validation)
+- [Mangum](https://mangum.io/) (ASGI adapter for Lambda)
+- [Loguru](https://loguru.readthedocs.io/en/stable/index.html) (Logging)
 
 ### Deployment
 
--   [uvicorn](https://www.uvicorn.org/)
--   [Gunicorn](https://docs.gunicorn.org/en/stable/)
+- [uvicorn](https://www.uvicorn.org/)
+- [Gunicorn](https://docs.gunicorn.org/en/stable/)
 
 ### [pre-commit](#pre-commit)/[Formatting](#formatting)
 
--   [pre-commit](https://pre-commit.com/) (pre-commit hook management)
-    -   [pre-commit-hooks](https://github.com/pre-commit/pre-commit-hooks) (Out of the box hooks)
--   [Black](https://black.readthedocs.io/en/stable/) (Code formatting)
--   [isort](https://pycqa.github.io/isort/) (Import sorting)
--   [Flake8](https://flake8.pycqa.org/en/latest/) (Linting)
--   [mypy](https://mypy.readthedocs.io/en/stable/) (Type checking)
+- [pre-commit](https://pre-commit.com/) (pre-commit hook management)
+  - [pre-commit-hooks](https://github.com/pre-commit/pre-commit-hooks) (Out of the box hooks)
+- [Black](https://black.readthedocs.io/en/stable/) (Code formatting)
+- [isort](https://pycqa.github.io/isort/) (Import sorting)
+- [Flake8](https://flake8.pycqa.org/en/latest/) (Linting)
+- [mypy](https://mypy.readthedocs.io/en/stable/) (Type checking)
 
 ### Other
 
--   [Python 3.11](https://docs.python.org/3.11/reference/)
-    -   [venv](https://docs.python.org/3.11/library/venv.html) (Virtual enviroment management)
-    -   [pip](https://pip.pypa.io/en/stable/) (Python package management)
+- [Python 3.11](https://docs.python.org/3.11/reference/)
+  - [venv](https://docs.python.org/3.11/library/venv.html) (Virtual enviroment management)
+  - [pip](https://pip.pypa.io/en/stable/) (Python package management)
 
 ---
 
@@ -47,8 +47,8 @@ This template supports being run:
 
 You're going to need a couple of prerequisites:
 
--   [Python 3.11](https://www.python.org/downloads/)
--   [Docker](https://docs.docker.com/get-docker/)
+- Python 3.11](https://www.python.org/downloads/)
+- [Docker](https://docs.docker.com/get-docker/)
 
 To find the version of your Python installation run:
 
@@ -65,15 +65,19 @@ To create your virtual enviroment run:
 ```
 
 On MacOS and Linux run the following to activate:
+
 ```zsh
 ~ source venv/bin/activate
 ```
 
 On Windows run:
+
 ```cmd
 > venv\Scripts\activate.bat
 ```
+
 On both platforms, if you wish to deactivate the virtual enviroment run:
+
 ```zsh
 (venv) ~ deactivate
 ```
@@ -97,7 +101,8 @@ app/
 ├── __init__.py
 ├── main.py
 ├── dependencies.py
-├── middleware.py
+├── middlewares/
+│   └── execution_time_logging.py
 ├── routers/
 │   └── users.py
 ├── models/
@@ -111,6 +116,7 @@ tests/
 requirements.txt
 dev-requirements.txt
 ```
+
 **Note:** all the files with "user" in the name are files to demonstrate the recomended structure. They form two endpoints defined in `routers/users.py`.
 
 This file structure is effectively an extension of the recomended file structure for "bigger applications" which can be found [here](https://fastapi.tiangolo.com/tutorial/bigger-applications/).
@@ -121,7 +127,7 @@ This file structure is effectively an extension of the recomended file structure
 
 `dependencies.py` defines... 🎉 dependencies 🎉! This is where you can put common parameters or basic authentication. If necessary this module can be split up into a package.
 
-`middleware.py` is where custom middleware can be placed. The middleware used to log endpoint execution time is defined here.
+`middlewares/` is where custom middleware can be placed. The middleware used to log endpoint execution time is defined here.
 
 `routers/` is for modules defining routers (pretty self explanatory). Again, this can be expanded into even more nested packages but at that point you might be leaving "microservice" territory.
 
@@ -133,27 +139,27 @@ This file structure is effectively an extension of the recomended file structure
 
 Now, you might want to spend a little bit of time starting at `main.py` and looking through the code to see how it's structured in practice. Once your done, and you want to delete the example code:
 
--   Delete the files
-    -   `app/routers/users.py`
-    -   `app/models/user.py`
-    -   `app/stores/user.py`
-    -   `tests/routers/test_users.py`
--   Delete parts involving "user(s)" in
-    -   `app/main.py`
-    -   `app/dependencies.py`
-
-Now would be a good time to replace the first line of `serverless.yml` with `service: [Insert App Name Here]`.
+- Delete the files
+  - `app/routers/users.py`
+  - `app/models/user.py`
+  - `app/stores/user.py`
+  - `tests/routers/test_users.py`
+- Delete parts involving "user(s)" in
+  - `app/main.py`
+  - `app/dependencies.py`
 
 ### Running Locally
 
 To run your microservice locally you either need to create a new `.env.local` file for your local configuration, or use a `.env` file for an existing stage. To use an enviroment file, the enviroment variable `STAGE` must be set to the stage of the file. For example:
 
 If you want to use the `.env.staging` enviroment run the following on MacOS and Linux:
+
 ```zsh
 ~ export STAGE=staging
 ```
 
 On Windows:
+
 ```cmd
 > set STAGE=staging
 ```
@@ -179,6 +185,7 @@ With Docker running, build the image by running:
 ```zsh
 ~ docker build -t my-image -f docker/cluster/Dockerfile ./
 ```
+
 **Note:** You can change the name of the image by replacing `my-cluster-image` with whatever you want.
 
 Now you have an image which you can run by whatever mechanism you wish. You will have to expose port 80 and specify the `.env` file you want to use. To run it detached locally with the `.env.staging` file run:
@@ -196,6 +203,7 @@ With Docker running, build the image by running:
 ```zsh
 ~ docker build -t my-server-image -f docker/server/Dockerfile ./
 ```
+
 **Note:** You can change the name of the image by replacing `my-server-image` with whatever you want.
 
 Now you have an image which can again be run any way you wish. Just make sure you expose port 80 and specify the `.env` file you want to use. To run it detached locally with the `.env.staging` file run:
@@ -230,6 +238,7 @@ Add the following line:
     "source.organizeImports": true
 }
 ```
+
 Done! Go ahead and try it out.
 
 ---
@@ -241,17 +250,20 @@ Done! Go ahead and try it out.
 Using pre-commit is not required but heavily encouraged. It's an easy way to make sure that style is followed and simple bugs are found before code even makes it to a pull request. On commit, Black, isort, Flake8, and [mypy](#mypy) are run and if any changes are made or errors are raised the commit will fail. Changes will then need to be staged and everything commited again.
 
 To start using pre-commit with the provided config (located in `.pre-commit-config.yaml`) run:
+
 ```zsh
 (venv) ~ pre-commit install --install-hooks
 ```
+
 **Note:** The `--install-hooks` flag is optional but you save time on your first commit by installing them now.
 
 **Note 2:** The installed pre-commit hooks do not get commited. Everybody working on the repo will have to run the above command.
 
-**Other Useful Commands**
--   `pre-commit run` - Run hooks on currently staged files
--   `pre-commit run --all-files` - Run hooks on all files in repo
--   `pre-commit autoupdate` - Auto-update pre-commit config to the latest repos' versions
+### Other Useful Commands**
+
+- `pre-commit run` - Run hooks on currently staged files
+- `pre-commit run --all-files` - Run hooks on all files in repo
+- `pre-commit autoupdate` - Auto-update pre-commit config to the latest repos' versions
 
 #### mypy
 
