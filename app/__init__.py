@@ -12,10 +12,10 @@ class Config(BaseSettings):
 
 
 stage = os.environ.get("STAGE")
+file = f".env.{stage.lower()}" if stage else ".env.dev"
 
-if not stage:
-    config = Config()
-else:
-    config = Config(_env_file=f".env.{stage.lower()}", _env_file_encoding="utf-8")
+
+config = Config(_env_file=file, _env_file_encoding="utf-8")  # type: ignore[call-arg]
+
 
 logger.info(f"Config: {config}")
