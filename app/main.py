@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from mangum import Mangum
 
 from app import config
-from app.middleware import EndpointExecutionTimeLoggingMiddleware
+from app.middlewares.execution_time_logging import ExecutionTimeLoggingMiddleware
 from app.routers import users
 
 app = FastAPI(openapi_url="/openapi.json" if config.enable_docs else None)
@@ -17,15 +17,15 @@ app.add_middleware(
 )
 
 if config.profile_endpoints:
-    app.add_middleware(EndpointExecutionTimeLoggingMiddleware)
+    app.add_middleware(ExecutionTimeLoggingMiddleware)
 
 
 app.include_router(users.router, prefix="/users")
 
 
-@app.get("/")
-async def root() -> str:
-    return "Hello, Root!"
+@app.get("/healthcheck")
+async def healthcheck() -> dict[str, str]:
+    return {"status": "Ok"}
 
 
 handler = Mangum(app)

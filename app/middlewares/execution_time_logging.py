@@ -5,7 +5,7 @@ from loguru import logger
 from starlette.middleware.base import BaseHTTPMiddleware, RequestResponseEndpoint
 
 
-class EndpointExecutionTimeLoggingMiddleware(BaseHTTPMiddleware):
+class ExecutionTimeLoggingMiddleware(BaseHTTPMiddleware):
     async def dispatch(
         self, request: Request, call_next: RequestResponseEndpoint
     ) -> Response:
